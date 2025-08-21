@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>StegoChat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #f5f7fa;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    .wrapper {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      max-width: 500px;
+      width: 100%;
+      padding: 35px;
+      transition: all 0.3s ease;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+      color: #222;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 35px;
+    }
+
+    input[type="file"],
+    textarea {
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    input[type="file"]::file-selector-button {
+      background: #dcdcdc;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #666;
+      background-color: #eaeaea;
+    }
+
+    button {
+      background: #007bff;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #005ecb;
+    }
+
+    @media (max-width: 600px) {
+      .wrapper {
+        padding: 25px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h2>Hide a Message in an Image</h2>
+    <form action="/encode/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="image" required />
+      <textarea name="message" placeholder="Enter your secret message" required></textarea>
+      <button type="submit">Hide Message</button>
+    </form>
+
+    <h2>Reveal Message from Image</h2>
+    <form action="/decoded/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="image" required />
+      <button type="submit">Reveal Message</button>
+    </form>
+  </div>
+</body>
+</html>

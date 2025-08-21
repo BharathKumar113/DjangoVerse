@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create QR Code</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #ff512f, #f09819);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .animated-title {
+            animation: bounce 2s infinite;
+        }
+
+        /* Form Styling */
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .form-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .form-input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            min-height: 100px;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: #ff512f;
+            outline: none;
+        }
+
+        .form-button {
+            padding: 10px 20px;
+            background: linear-gradient(to right, #ff512f, #f09819);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .form-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .form-input {
+                font-size: 0.9rem;
+            }
+
+            .form-button {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="animated-title">Make Your Own QR Code Here</h1>
+        </header>
+        <main>
+            <form action="/qr/" method="POST" class="form">
+            {%csrf_token%}
+                <label for="text" class="form-label">Enter your text:</label>
+                <textarea id="text" name="text" class="form-input" placeholder="Type your word, sentence, or paragraph here..." required></textarea>
+                <button type="submit" class="form-button">Generate QR Code</button>
+            </form>
+        </main>
+        <footer>
+            <p>&copy; 2024 QR Code Generator. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

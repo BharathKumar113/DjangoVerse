@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Link Submit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #f06, #48c6ef);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Border */
+        .border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            animation: animate-border 6s infinite alternate;
+        }
+
+        @keyframes animate-border {
+            0% {
+                border: 3px solid #FF6347;
+            }
+            25% {
+                border: 3px solid #FFD700;
+            }
+            50% {
+                border: 3px solid #32CD32;
+            }
+            75% {
+                border: 3px solid #1E90FF;
+            }
+            100% {
+                border: 3px solid #8A2BE2;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 50px;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeInUp 1.5s ease-out;
+            border: 5px solid transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header Styling */
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Label Styling */
+        label {
+            font-size: 18px;
+            color: #444;
+            margin: 10px 0;
+            font-weight: 500;
+            display: block;
+        }
+
+        /* Input Field Styling */
+        input[type="url"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="url"]:hover,
+        input[type="url"]:focus {
+            border-color: #48c6ef;
+            background: #fff;
+            outline: none;
+        }
+
+        /* Submit Button Styling */
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-4px);
+        }
+
+        button:active {
+            transform: translateY(2px);
+        }
+
+        /* Animation for form appearance */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 40px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            input[type="url"], button {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Border Animation -->
+    <div class="border"></div>
+
+    <div class="container">
+        <h1>Enter Instagram Link</h1>
+        <form action="/insta_download/" method="POST">
+        {%csrf_token%}
+            <label for="instagram-url">Instagram URL:</label>
+            <input type="url" name="url" id="instagram-url" placeholder="https://www.instagram.com/..." required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

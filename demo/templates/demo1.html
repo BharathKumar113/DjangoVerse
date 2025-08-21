@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DjangoVerse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: cyan;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #333;
+    }
+
+    .navbar {
+      background: #4b4f7c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      flex-wrap: wrap;
+    }
+
+    .navbar h1 {
+      font-size: 1.8rem;
+      font-family: 'Sacramento', cursive;
+      color: #ffd700;
+      margin-right: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ff5e57;
+    }
+
+    .off-canvas {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      height: 100%;
+      width: 250px;
+      background-color: #4b4f7c;
+      transition: 0.3s;
+      padding: 20px;
+      z-index: 999;
+    }
+
+    .off-canvas a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .off-canvas a:hover {
+      color: #ff5e57;
+    }
+
+    .off-canvas-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .off-canvas-btn:focus {
+      outline: none;
+    }
+
+    .header {
+      text-align: center;
+      margin: 30px 10px;
+    }
+
+    .header h2 {
+      font-size: 2rem;
+      color: #4b4f7c;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .tool {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      color: #333;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tool:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, #ffec61, #ff8c68);
+    }
+
+    .tool img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .tool span {
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #ddd;
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #2a3d66, #5c3b6f);
+      border-radius: 15px;
+    }
+
+    .footer a {
+      color: #ffd700;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer a:hover {
+      color: #fff;
+    }
+
+    /* Media Queries for responsiveness */
+    @media screen and (max-width: 600px) {
+      .navbar h1 {
+        font-size: 1.5rem;
+      }
+
+      .header h2 {
+        font-size: 1.5rem;
+      }
+
+      .tool img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .tool span {
+        font-size: 13px;
+      }
+
+      .nav-links {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      /* Off-canvas menu button */
+      .off-canvas-btn {
+        display: block;
+      }
+
+      /* Off-canvas menu appearance for mobile */
+      .off-canvas {
+        width: 70%;
+        right: -100%;
+      }
+
+      .off-canvas.open {
+        right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>DjangoVerse</h1>
+    <button class="off-canvas-btn" onclick="toggleOffCanvas()">☰</button>
+  </div>
+
+  <!-- Off-Canvas Menu -->
+  <div class="off-canvas" id="offCanvas">
+    <a href="/get_signup">Sign Up</a>
+    <a href="/get_login">Login</a>
+     <a href="/get_logout">Log Out</a>
+  </div>
+  
+ 
+  </div>
+{% if username %}
+<div class="header">
+  <h2>Welcome, {{ username }}!</h2> 
+  {% endif %}
+  
+</div>
+  <!-- Tool Container -->
+  <div class="container">
+    <a href="/insta" class="tool">
+      <img src="https://img.icons8.com/color/60/000000/instagram-new--v1.png" alt="Instagram">
+      <span>Instagram Video Downloader</span>
+    </a>
+    <a href="/pdf_protect" class="tool">
+      <img src="https://img.icons8.com/color/60/000000/pdf-2--v1.png" alt="PDF">
+      <span>PDF File Protector</span>
+    </a>
+    <a href="/text" class="tool">
+      <img src="https://img.icons8.com/color/60/000000/speaker.png" alt="Text to Speech">
+      <span>Text to Speech</span>
+    </a>
+    <a href="/stego" class="tool">
+      <img src="https://img.icons8.com/color/60/000000/detective.png" alt="Steganography">
+      <span>Steganography Tool</span>
+    </a>
+    <a href="/qr_code" class="tool">
+      <img src="https://img.icons8.com/color/60/000000/qr-code.png" alt="QR Code">
+      <span>QR Code Maker</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2025 DjangoVerse. All rights reserved. |
+    <a href="#" onclick="terms()">Privacy Policy</a> |
+    <a href="#" onclick="terms()">Terms of Service</a>
+  </div>
+
+  <script>
+    function toggleOffCanvas() {
+      const offCanvas = document.getElementById('offCanvas');
+      offCanvas.classList.toggle('open');
+    }
+
+    // Close the menu if clicked outside of it
+    window.addEventListener('click', function(event) {
+      const offCanvas = document.getElementById('offCanvas');
+      const menuButton = document.querySelector('.off-canvas-btn');
+      if (!offCanvas.contains(event.target) && !menuButton.contains(event.target)) {
+        offCanvas.classList.remove('open');
+      }
+    });
+
+    function terms() {
+      alert("This site is under development. Stay tuned for updates!");
+    }
+  </script>
+
+</body>
+</html>

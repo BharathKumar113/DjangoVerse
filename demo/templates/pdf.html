@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Uploader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Container Styling */
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 60px;
+            max-width: 450px;
+            width: 90%;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        /* Title Styling */
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            animation: slideInFromTop 0.8s ease-out;
+        }
+
+        /* Label and Input Styling */
+        label {
+            font-size: 16px;
+            color: #555;
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: 500;
+        }
+
+        input[type="file"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            background: #f0f4f8;
+        }
+
+        input[type="file"]:hover,
+        input[type="password"]:hover {
+            border-color: #6a11cb;
+            background: #fff;
+        }
+
+        input[type="file"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #2575fc;
+            background: #fff;
+        }
+
+        /* Button Styling */
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-4px);
+        }
+
+        button:active {
+            transform: translateY(2px);
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromTop {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Background Animation */
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.2);
+            animation: backgroundMove 10s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes backgroundMove {
+            0% {
+                background: rgba(255, 255, 255, 0.1);
+            }
+            25% {
+                background: rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                background: rgba(255, 255, 255, 0.5);
+            }
+            75% {
+                background: rgba(255, 255, 255, 0.3);
+            }
+            100% {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 40px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            input[type="file"], input[type="password"], button {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+
+        /* Anchor Styling */
+        .redirect-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .redirect-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Animation Layer -->
+    <div class="background-animation"></div>
+
+    <div class="container">
+        <h1>Upload and Encrypt Your PDF</h1>
+        <form action="/pdf_process/" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+            <label for="file">Select PDF:</label>
+            <input type="file" name="file" id="file" required>
+
+            <label for="password">Enter Password for Encryption:</label>
+            <input type="password" name="password" id="password" required>
+
+            <button type="submit">Upload and Encrypt</button>
+        </form>
+
+        <!-- Redirect Link -->
+<marquee><a href="#" class="redirect-link" >New  instagram Downloader</a></marquee>
+    </div>
+
+</body>
+</html>
